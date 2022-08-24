@@ -4,15 +4,10 @@ pipeline{
         maven "Jenkins-maven"
     }
     stages{
-        stage("maven install"){
+        stage("build"){
             steps{
-                  sh 'clean install'
+                  sh 'mvn -B -DskipTests clean package'
                   echo ' installed ' 
-            }
-        }
-        stage("test"){
-            steps{
-                echo 'testing'
             }
         }
     }
