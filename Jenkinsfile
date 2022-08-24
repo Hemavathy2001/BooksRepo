@@ -8,6 +8,7 @@ pipeline{
             steps{
                   sh 'mvn -B -DskipTests clean package'
                   echo ' installed jar file  ' 
+                  sh 'mvn --version'
             }
         }
         stage("test"){
