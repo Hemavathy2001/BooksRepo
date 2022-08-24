@@ -4,9 +4,15 @@ pipeline{
         maven 'Jenkins-maven'
     }
     stages{
-        stages("maven install"){
-            sh 'clean install'
+        stage("maven install"){
+            steps{
+                  sh 'clean install'
+            }
+        }
+        stage("test"){
+            steps{
+                echo 'testing'
+            }
         }
     }
 }
-
