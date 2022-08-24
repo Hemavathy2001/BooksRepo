@@ -1,17 +1,14 @@
 pipeline{
-    agent any 
-    tools{
-        maven 'Jenkins-maven'
-    }
+    agent any
     stages{
-        stage("maven install"){
+        stage("build"){
             steps{
-                  sh 'clean install'
+                echo 'building the app'
             }
         }
         stage("test"){
             steps{
-                echo 'testing'
+                echo 'testing the app'
             }
         }
     }
