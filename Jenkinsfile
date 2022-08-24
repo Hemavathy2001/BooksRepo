@@ -1,12 +1,13 @@
 pipeline{
     agent any 
     tools{
-        maven 'Jenkins-maven'
+        maven "Jenkins-maven"
     }
     stages{
         stage("maven install"){
             steps{
                   sh 'clean install'
+                  echo ' installed ' 
             }
         }
         stage("test"){
