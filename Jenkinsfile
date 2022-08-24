@@ -2,7 +2,10 @@ pipeline{
     agent any 
     tools{
         maven "Jenkins-maven"
-        docker "Docker"
+    }
+    environment{
+        dockerImage = ''
+        registry = 'hrc1663/bookstoreapp'
     }
     stages{
         stage("development"){
@@ -10,7 +13,9 @@ pipeline{
                   sh 'mvn -B -DskipTests clean package'
                   echo ' installed jar file  ' 
                   sh 'mvn --version'
-                  sh 'docker --version'
+                  script{
+                    dockerImage = docker.build registry
+                }
             }
         }
         stage("test"){
