@@ -9,6 +9,7 @@ pipeline{
                   sh 'mvn -B -DskipTests clean package'
                   echo ' installed jar file  ' 
                   sh 'mvn --version'
+                  sh 'docker --version'
             }
         }
         stage("test"){
