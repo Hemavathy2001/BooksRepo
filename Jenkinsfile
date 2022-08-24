@@ -6,6 +6,7 @@ pipeline{
     environment{
         dockerImage = ''
         registry = 'hrc1663/bookstoreapp'
+        registryCredential='Docker'
     }
     stages{
         stage("development"){
@@ -15,6 +16,9 @@ pipeline{
                   sh 'mvn --version'
                   script{
                     dockerImage = docker.build registry
+                      docker.withRegistry('',registryCredential){
+                          dockerImage.push()
+                      }
                 }
             }
         }
