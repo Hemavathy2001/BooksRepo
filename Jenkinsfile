@@ -6,8 +6,8 @@ pipeline{
     stages{
         stage("maven install"){
             steps{
-                  sh 'clean install
-                  ech ' installed ' 
+                  sh 'clean install'
+                  echo ' installed ' 
             }
         }
         stage("test"){
