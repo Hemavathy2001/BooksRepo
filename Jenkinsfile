@@ -12,7 +12,6 @@ pipeline{
         }
         stage("test"){
             steps{
-                sh 'docker --version'
                 echo ' testing the application '
             }
         }
