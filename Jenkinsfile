@@ -15,7 +15,7 @@ pipeline{
         stage("development"){
             steps{
 //                  sh 'mvn -B -DskipTests clean package'
-                  echo ' installed jar file  ' 
+                  echo ' installed jar file ... ' 
                   sh 'mvn --version'
 //                   script{
 //                     dockerImage = docker.build registry
