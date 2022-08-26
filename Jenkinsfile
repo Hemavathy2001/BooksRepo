@@ -1,14 +1,14 @@
 pipeline{
     agent any 
-    triggers{
-         pollSCM "* * * * *"
-    }
+//     triggers{
+//          pollSCM "* * * * *"
+//     }
     tools{
         maven "Jenkins-maven"
     }
     environment{
         dockerImage = ''
-        registry = 'hrc1663/test'
+        registry = 'hrc1663/BooksApplication'
         registryCredential='Docker'
     }
     stages{
