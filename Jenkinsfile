@@ -33,7 +33,7 @@ pipeline{
         stage("production"){
             steps{
                 script{
-                    kubernetesApply(file: "configmap.yaml", kubeconfigId: "kubernetes")
+                    kubernetesDeploy(configs: "configmap.yaml", kubeconfigId: "kubernetes")
                     kubernetesDeploy(configs: "mongodepl.yaml", kubeconfigId: "kubernetes")
                     kubernetesDeploy(configs: "bookapi.yaml", kubeconfigId: "kubernetes")             
                 }
