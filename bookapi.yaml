@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: booksapp
+  labels:
+    app: booksapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booksapp
+  template:
+    metadata:
+      labels:
+        app: booksapp
+    spec:
+      containers:
+      - name: booksapp
+        image: hrc1663/books:latest
+        ports:
+          - containerPort: 8080
+        env:
+        - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+          valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: mongo-root-username
+        - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+          valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: mongo-root-password
+        - name: ME_CONFIG_MONGODB_SERVER
+          valueFrom:
+              configMapKeyRef:
+                name: mongodb-configmap
+                key: database_url
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: books-service
+spec:
+  selector:
+    app: mongo-express
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30081
