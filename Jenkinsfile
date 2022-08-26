@@ -37,7 +37,7 @@ pipeline{
                     kubernetesDeploy(configs: "mongodepl.yaml", kubeconfigId: "kubernetes")
                     kubernetesDeploy(configs: "bookapi.yaml", kubeconfigId: "kubernetes")             
                 }
-               echo ' production '   
+               echo ' production... '   
             }
         }
     }
