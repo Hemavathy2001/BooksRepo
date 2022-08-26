@@ -1,7 +1,7 @@
 pipeline{
     agent any 
     triggers{
-                cron "* * * * *"
+         pollSCM "* * * * *"
     }
     tools{
         maven "Jenkins-maven"
