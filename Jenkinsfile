@@ -8,7 +8,7 @@ pipeline{
     }
     environment{
         dockerImage = ''
-        registry = 'hrc1663/BooksApplication'
+        registry = 'hrc1663/booksapplication'
         registryCredential='Docker'
     }
     stages{
