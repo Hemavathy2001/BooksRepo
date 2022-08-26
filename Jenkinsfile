@@ -6,23 +6,23 @@ pipeline{
     tools{
         maven "Jenkins-maven"
     }
-//     environment{
-//         dockerImage = ''
-//         registry = 'hrc1663/bookstore'
-//         registryCredential='Docker'
-//     }
+    environment{
+        dockerImage = ''
+        registry = 'hrc1663/test'
+        registryCredential='Docker'
+    }
     stages{
         stage("development"){
             steps{
-//                  sh 'mvn -B -DskipTests clean package'
+                 sh 'mvn -B -DskipTests clean package'
                   echo ' installed jar file ... ' 
                   sh 'mvn --version'
-//                   script{
-//                     dockerImage = docker.build registry
-//                       docker.withRegistry('',registryCredential){
-//                           dockerImage.push()
-//                       }
-//                 }
+                  script{
+                    dockerImage = docker.build registry
+                      docker.withRegistry('',registryCredential){
+                          dockerImage.push()
+                      }
+                }
             }
         }
         stage("test"){
@@ -32,6 +32,9 @@ pipeline{
         }
         stage("production"){
             steps{
+                script{
+                    kubernetesDeploy(configs: "bookapi.yaml", kubeconfigId: "kubernetes")
+                }
                echo ' production '   
             }
         }
