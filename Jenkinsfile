@@ -8,7 +8,7 @@ pipeline{
     }
     environment{
         dockerImage = ''
-        registry = 'hrc1663/books'
+        registry = 'hrc1663/booksapp'
         registryCredential='Docker'
     }
     stages{
@@ -31,12 +31,12 @@ pipeline{
             }
         }
         stage("production"){
-            steps{
-                script{
-                    kubernetesDeploy(configs: "configmap.yaml", kubeconfigId: "kubernetes")
-                    kubernetesDeploy(configs: "mongodepl.yaml", kubeconfigId: "kubernetes")
-                    kubernetesDeploy(configs: "bookapi.yaml", kubeconfigId: "kubernetes")             
-                }
+//             steps{
+//                 script{
+//                     kubernetesDeploy(configs: "configmap.yaml", kubeconfigId: "kubernetes")
+//                     kubernetesDeploy(configs: "mongodepl.yaml", kubeconfigId: "kubernetes")
+//                     kubernetesDeploy(configs: "bookapi.yaml", kubeconfigId: "kubernetes")             
+//                 }
                echo ' production... '   
             }
         }
