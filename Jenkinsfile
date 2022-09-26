@@ -30,17 +30,17 @@ pipeline{
                 echo ' testing the application '
             }
         }
-        stage("production"){
+//         stage("production"){
 //             steps{
 //                 script{
 //                     kubernetesDeploy(configs: "configmap.yaml", kubeconfigId: "kubernetes")
 //                     kubernetesDeploy(configs: "mongodepl.yaml", kubeconfigId: "kubernetes")
 //                     kubernetesDeploy(configs: "bookapi.yaml", kubeconfigId: "kubernetes")             
 //                 }
-               echo ' production... '   
-            }
-        }
-    }
+//                echo ' production... '   
+//             }
+//         }
+//     }
     post{
         always{
             
